@@ -1,4 +1,4 @@
-function onUse(cid, item, fromPosition, itemEx, toPosition)
+function onUse(cid, item, fromPosition, itemEx, toPosition, target)
 	local miss = getPlayerStorageValue(cid, 266666) + 1
 	local hit = getPlayerStorageValue(cid, 255555) + 1
 	local playername = getCreatureName(cid)
@@ -6,11 +6,14 @@ function onUse(cid, item, fromPosition, itemEx, toPosition)
 		print("".. playername.." hit sd into ".. getCreatureName(itemEx.uid) .."")
 		setPlayerStorageValue(cid, 255555, hit)
 			return combat
-		end
-		-- would also work if not(isPlayer(itemEx.uid))
-	if not(isPlayer(itemEx.uid)) then
+		
+	elseif not(isPlayer(itemEx.uid)) then
 		print(" ".. playername .." is using sd ")
 		setPlayerStorageValue(cid, 266666, miss)
-		end
+		return combat
 		
+	else
+		return combat
+		end
+		--invisible creatures return error RET_CANONLYHITCREATURES
 end
