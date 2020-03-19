@@ -11,9 +11,12 @@ function onUse(cid, item, fromPosition, itemEx, toPosition, target)
 		print(" ".. playername .." is using sd ")
 		setPlayerStorageValue(cid, 266666, miss)
 		return combat
-		
+	elseif isCreature(cid) then
+		print("creature hit")
+		return combat
 	else
 		return combat
 		end
-		--invisible creatures return error RET_CANONLYHITCREATURES
+	return combat
+	--invisible creatures return error RET_CANONLYHITCREATURES
 end
